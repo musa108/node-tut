@@ -1,6 +1,14 @@
-const _ = require('lodash');
+const express = require("express");
+const app = express();
+let  {people}  = require("./data");
 
-const items = [1,[2,[3,4]]]
-const newItems = _.flattenDeep(items)
 
-console.log(newItems);
+
+app.use(express.static('./public'))
+
+app.get('/api/people',(req,res) =>{
+    res.status(200).json({success:true,data:people})
+})
+app.listen(5000, () => {
+  console.log("server listening on port: 5000.....");
+});
